@@ -17,7 +17,8 @@ class db {
         const Users = new Schema({
             username:String,
             password:String,
-            fullname:String
+            fullname:String,
+            image: String,
         });
 
         const Posts = new Schema({
