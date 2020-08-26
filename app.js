@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var dbRouter = require('./routes/db');
 var fetchRouter = require('./routes/fetch');
 var createRouter = require('./routes/create');
-
+var getController = require('./routes/get');
 var app = express();
 
 // view engine setup
@@ -29,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/news', dbRouter);
 app.use('/fetch', fetchRouter);
 app.use('/create', createRouter);
+app.use('/find', getController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

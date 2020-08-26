@@ -5,7 +5,7 @@ var router = AsyncRouter();
 
 
 const db = require ('../bin/db.js');
-const database = new db('127.0.0.1', 'barry', 'webdev', 'news');
+const database = require('../config/database');
 
 
 /* GET home page. */

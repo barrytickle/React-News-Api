@@ -1,9 +1,10 @@
+const db = require ('../bin/db.js');
+const database = require('../config/database');
+
 var express = require('express');
 var AsyncRouter = require("express-async-router").AsyncRouter;
 var router = AsyncRouter();
 
-const db = require ('../bin/db.js');
-const database = new db('127.0.0.1', 'barry', 'webdev', 'news');
 
     /* GET home page. */
 router.get('/', function(req, res, next) {
