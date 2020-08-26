@@ -1,6 +1,9 @@
 // const {Model} from "sequelize";
 // const { Sequelize, DataTypes, Model } = require('sequelize');
-
+const userDetails = require('../models/user');
+const postDetails = require('../models/post');
+const catDetails = require('../models/category');
+const roleDetails = require('../models/role');
 
 class db {
     constructor(){
@@ -14,44 +17,36 @@ class db {
         AI.initialize(conn);
 
         conn.on('error', console.error.bind(console, 'Connection error'));
-        const Users = new Schema({
-            username:String,
-            password:String,
-            fullname:String,
-            image: String,
-        });
 
-        const Posts = new Schema({
-            title:String,
-            body: String,
-            slug:String,
-            category: [{type: Schema.Types.ObjectId, ref: 'Cat'}],
-            author: [{type: Schema.Types.ObjectId, ref:'User'}]
-        });
+        const user = userDetails.model;
+        const Users = userDetails.schema;
 
-        const Categories = new Schema({
-            name:String,
-            slug:String
-        });
+        const Posts = postDetails.schema;
+        const Post = postDetails.model;
 
+        const Categories = catDetails.schema;
+        const Cat = catDetails.model;
+
+        const Roles = roleDetails.schema;
+        const Role = roleDetails.model;
 
         Users.plugin(AI.plugin, 'User');
         Posts.plugin(AI.plugin, 'Post');
-        Categories.plugin(AI.plugin, 'Cat');
-
-        const User = mongoose.model('User', Users);
-        const Post = mongoose.model('Post', Posts);
-        const Cat = mongoose.model('Cat', Categories);
+        Categories.plugin(AI.plugin, 'Category');
+        Roles.plugin(AI.plugin, 'Roles')
 
         // User.find({}).exec().then((data) => console.log(data));
 
 
-        this._user = User;
+        this._user = user;
         this._post = Post;
         this._cat = Cat;
+        this.roles = Role;
 
-        this.createPost = this.createPost.bind(this);
+        // this.createPost = this.createPost.bind(this);
     }
+
+
 
     show(){
         const post = this._post;
@@ -74,14 +69,6 @@ class db {
             return 'Error, no fields found';
         }
     }
-
-    async createPost(){
-        const user = this._user;
-        const post = this._post;
-
-
-    }
-
 
 
 }
