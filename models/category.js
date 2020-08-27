@@ -1,21 +1,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const AI = require('mongoose-auto-increment');
+const conn = mongoose.connection;
+AI.initialize(conn);
 
-const Roles = new Schema({
-    name: String
+const Categories = new Schema({
+    name:String,
+    slug:String,
+    icon:String
 });
 
-let Role
+let Cat
 
 try {
-    Role = mongoose.model('Role');
+    Cat = mongoose.model('Category');
 }catch{
-    Role = mongoose.model('Role', Roles);
+    Cat = mongoose.model('Category', Categories);
 }
+Categories.plugin(AI.plugin, 'Category');
+
 
 const  object =  {
-    schema: Roles,
-    model: Role
+    schema: Categories,
+    model: Cat
 };
 
 module.exports = object;
+

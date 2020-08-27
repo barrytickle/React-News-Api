@@ -2,8 +2,8 @@
 // const { Sequelize, DataTypes, Model } = require('sequelize');
 const userDetails = require('../models/user');
 const postDetails = require('../models/post');
-const catDetails = require('../models/category');
-const roleDetails = require('../models/role');
+const catDetails = require('../models/roles');
+const roleDetails = require('../models/category');
 
 class db {
     constructor(){
@@ -30,12 +30,6 @@ class db {
         const Roles = roleDetails.schema;
         const Role = roleDetails.model;
 
-        Users.plugin(AI.plugin, 'User');
-        Posts.plugin(AI.plugin, 'Post');
-        Categories.plugin(AI.plugin, 'Category');
-        Roles.plugin(AI.plugin, 'Roles')
-
-        // User.find({}).exec().then((data) => console.log(data));
 
 
         this._user = user;

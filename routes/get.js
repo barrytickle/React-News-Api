@@ -2,11 +2,10 @@ var express = require('express');
 var AsyncRouter = require("express-async-router").AsyncRouter;
 var router = AsyncRouter();
 
-const roles = require('../models/role');
+const roles = require('../models/roles');
 const categories = require('../models/category');
 const users = require('../models/user');
 const posts = require('../models/post');
-
 
 const category = categories.model;
 const user = users.model;
@@ -42,7 +41,6 @@ router.get('/:model', function(req, res, next) {
         case 'post':
             return post.find(body).then(result => {return result});
     }
-
 });
 
 module.exports = router;

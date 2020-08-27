@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const AI = require('mongoose-auto-increment');
+const conn = mongoose.connection;
+AI.initialize(conn);
 
 const Posts = new Schema({
     title:String,
@@ -9,6 +11,8 @@ const Posts = new Schema({
     category: [{type: Schema.Types.ObjectId, ref: 'Cat'}],
     author: [{type: Schema.Types.ObjectId, ref:'User'}]
 });
+Posts.plugin(AI.plugin, 'Post');
+
 let Post
 
 try {
@@ -16,6 +20,9 @@ try {
 }catch{
     Post = mongoose.model('Post', Posts);
 }
+
+
+
 
 const  object =  {
     schema: Posts,
