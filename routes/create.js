@@ -18,7 +18,6 @@ function createPostData(count, body){
     Object.keys(body).map(function(key, index){
         postData[key] = body[key];
     });
-    // console.log(postData);
     return postData;
 }
 
@@ -72,15 +71,12 @@ router.post('/category', function(req, res, next) {
     const CatModel = Categories.model;
 
     return CatModel.nextCount(function(err, count){
-
         if(err){
             throw err;
         }
-
         const postData = createPostData(count, body);
         CatModel.create(postData);
     })
-
 });
 
 module.exports = router;
