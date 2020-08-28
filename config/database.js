@@ -1,4 +1,3 @@
-const db = require ('../bin/db.js');
-const database = new db('127.0.0.1', 'barry', 'webdev', 'news');
+const db_config = ['127.0.0.1', 'barry', 'webdev', 'news'];
 
-module.exports.default = database;
+exports.database = db_config;

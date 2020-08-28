@@ -1,5 +1,6 @@
-const db = require ('../bin/db.js');
-const database = require('../config/database');
+const db = require('../bin/db');
+const db_config = require('../config/database');
+const database = new db(db_config);
 
 var express = require('express');
 var AsyncRouter = require("express-async-router").AsyncRouter;

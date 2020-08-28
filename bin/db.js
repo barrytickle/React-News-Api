@@ -31,7 +31,6 @@ class db {
         const Role = roleDetails.model;
 
 
-
         this._user = user;
         this._post = Post;
         this._cat = Cat;
@@ -45,6 +44,10 @@ class db {
     show(){
         const post = this._post;
         return post.find({}).exec();
+    }
+
+    test(){
+        return 'This is working';
     }
 
 
